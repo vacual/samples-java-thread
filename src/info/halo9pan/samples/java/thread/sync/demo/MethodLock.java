@@ -22,7 +22,7 @@ public class MethodLock extends Demo {
 class MethodRunner extends Runner {
 
 	@Override
-	protected synchronized void ing() {
+	public synchronized void ing() {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.4));

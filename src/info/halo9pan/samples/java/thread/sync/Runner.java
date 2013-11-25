@@ -3,7 +3,7 @@ package info.halo9pan.samples.java.thread.sync;
 public abstract class Runner {
 	
 	protected int number;
-	protected abstract void ing();
+	public abstract void ing();
 	
 	protected long getRunTime(){
 		return 1000L;

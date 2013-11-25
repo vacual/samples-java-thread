@@ -28,7 +28,7 @@ class ObjectLockRunner extends Runner {
 	}
 
 	@Override
-	protected void ing() {
+	public void ing() {
 		long time = getRunTime();
 		try {
 			synchronized (this.lock) {

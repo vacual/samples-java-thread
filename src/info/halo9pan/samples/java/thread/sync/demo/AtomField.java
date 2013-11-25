@@ -27,7 +27,7 @@ class AtomFieldRunner extends Runner {
 	private AtomicInteger atom = new AtomicInteger();
 
 	@Override
-	protected void ing() {
+	public void ing() {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.5));

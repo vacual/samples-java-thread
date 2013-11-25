@@ -22,7 +22,7 @@ public class SelfLock extends Demo {
 class SelfRunner extends Runner {
 
 	@Override
-	protected void ing() {
+	public void ing() {
 		long time = getRunTime();
 		try {
 			synchronized (this) {

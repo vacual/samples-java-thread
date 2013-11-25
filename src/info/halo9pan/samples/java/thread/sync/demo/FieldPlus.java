@@ -23,7 +23,7 @@ public class FieldPlus extends Demo {
 class FieldPlusRunner extends Runner {
 
 	@Override
-	protected void ing() {
+	public void ing() {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.5));

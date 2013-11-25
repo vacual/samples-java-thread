@@ -22,7 +22,7 @@ public class NoneLock extends Demo {
 class NoneLockRunner extends Runner {
 
 	@Override
-	protected void ing() {
+	public void ing() {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.4));
