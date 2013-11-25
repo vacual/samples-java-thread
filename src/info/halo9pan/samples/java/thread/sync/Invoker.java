@@ -2,9 +2,9 @@ package info.halo9pan.samples.java.thread.sync;
 
 public class Invoker implements Runnable {
 	
-	private int id;
-	private Runner runner;
-	private long runTime;
+	protected int id;
+	protected Runner runner;
+	protected long runTime;
 
 	public Invoker(int id, Runner runner) {
 		super();
