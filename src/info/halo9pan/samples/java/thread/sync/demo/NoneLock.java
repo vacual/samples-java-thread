@@ -20,7 +20,6 @@ public class NoneLock extends Demo {
 }
 
 class NoneLockRunner extends Runner {
-
 	@Override
 	public void doSomething() {
 		long time = getRunTime();
@@ -34,5 +33,4 @@ class NoneLockRunner extends Runner {
 			e.printStackTrace();
 		}
 	}
-
 }
