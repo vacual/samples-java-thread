@@ -15,7 +15,7 @@ public class Invoker implements Runnable {
 	@Override
 	public void run() {
 		long start = System.currentTimeMillis();
-		this.runner.ing();
+		this.runner.doSomething();
 		long end = System.currentTimeMillis();
 		this.runTime = (end - start);
 		System.out.println("[" + this.id + "]" + "结束运行，耗时" + this.runTime);

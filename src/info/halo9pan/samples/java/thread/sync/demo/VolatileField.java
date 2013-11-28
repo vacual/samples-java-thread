@@ -38,7 +38,7 @@ class VolatileFieldRunner extends Runner {
 	volatile private int number;
 
 	@Override
-	public void ing() {
+	public void doSomething() {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.5));

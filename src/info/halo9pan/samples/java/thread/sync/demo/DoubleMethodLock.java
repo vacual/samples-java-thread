@@ -26,9 +26,9 @@ public class DoubleMethodLock extends Demo {
 				long start = System.currentTimeMillis();
 				DoubleMethodRunner dmr = (DoubleMethodRunner)this.runner;
 				if((this.id % 2) == 0){
-					dmr.ing();
+					dmr.doSomething();
 				} else {
-					dmr.action();
+					dmr.doAnother();
 				}
 				long end = System.currentTimeMillis();
 				this.runTime = (end - start);
@@ -44,7 +44,7 @@ public class DoubleMethodLock extends Demo {
 class DoubleMethodRunner extends Runner {
 
 	@Override
-	public synchronized void ing() {
+	public synchronized void doSomething() {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.4));
@@ -57,7 +57,7 @@ class DoubleMethodRunner extends Runner {
 		}
 	}
 
-	public synchronized void action() {
+	public synchronized void doAnother() {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.8));
