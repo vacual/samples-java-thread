@@ -1,8 +1,8 @@
 package info.halo9pan.samples.java.thread.sync.demo;
 
+import info.halo9pan.samples.java.thread.Invoker;
+import info.halo9pan.samples.java.thread.Runner;
 import info.halo9pan.samples.java.thread.sync.Demo;
-import info.halo9pan.samples.java.thread.sync.Invoker;
-import info.halo9pan.samples.java.thread.sync.Runner;
 
 public class DoubleMethodLock extends Demo {
 
@@ -31,8 +31,8 @@ public class DoubleMethodLock extends Demo {
 					dmr.doAnother();
 				}
 				long end = System.currentTimeMillis();
-				this.runTime = (end - start);
-				System.out.println("[" + this.id + "]" + "结束运行，耗时" + this.runTime);
+				this.spentTime = (end - start);
+				System.out.println("[" + this.id + "]" + "结束运行，耗时" + this.spentTime);
 			}
 			
 		};
@@ -48,9 +48,9 @@ class DoubleMethodRunner extends Runner {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.4));
-			int number = this.number;
+			int number = this.identifier;
 			Thread.sleep((long) (time * 0.2));
-			this.number = number + 1;
+			this.identifier = number + 1;
 			Thread.sleep((long) (time * 0.4));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -61,9 +61,9 @@ class DoubleMethodRunner extends Runner {
 		long time = getRunTime() * 2;
 		try {
 			Thread.sleep((long) (time * 0.8));
-			int number = this.number;
+			int number = this.identifier;
 			Thread.sleep((long) (time * 0.1));
-			this.number = number + 1;
+			this.identifier = number + 1;
 			Thread.sleep((long) (time * 0.1));
 		} catch (InterruptedException e) {
 			e.printStackTrace();

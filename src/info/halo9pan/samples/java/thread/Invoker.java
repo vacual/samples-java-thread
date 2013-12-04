@@ -1,10 +1,10 @@
-package info.halo9pan.samples.java.thread.sync;
+package info.halo9pan.samples.java.thread;
 
 public class Invoker implements Runnable {
 	
 	protected int id;
 	protected Runner runner;
-	protected long runTime;
+	protected long spentTime;
 
 	public Invoker(int id, Runner runner) {
 		super();
@@ -17,12 +17,12 @@ public class Invoker implements Runnable {
 		long start = System.currentTimeMillis();
 		this.runner.doSomething();
 		long end = System.currentTimeMillis();
-		this.runTime = (end - start);
-		System.out.println("[" + this.id + "]" + "结束运行，耗时" + this.runTime);
+		this.spentTime = (end - start);
+		System.out.println("[" + this.id + "]" + " finished, spent time: " + this.spentTime);
 	}
 	
-	public long getRunTime(){
-		return this.runTime;
+	public long getSpentTime(){
+		return this.spentTime;
 	}
 
 }

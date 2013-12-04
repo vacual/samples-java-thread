@@ -6,6 +6,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import info.halo9pan.samples.java.thread.Invoker;
+import info.halo9pan.samples.java.thread.Runner;
+
 public abstract class Demo {
 
 	protected int THREAD_NUMBER = 4;
@@ -43,11 +46,11 @@ public abstract class Demo {
 		}
 		long maxRunTime = 0;
 		for (Invoker i : this.list) {
-			long runTime = i.getRunTime();
+			long runTime = i.getSpentTime();
 			maxRunTime = (maxRunTime < runTime) ? runTime : maxRunTime;
 		}
-		System.out.println("最大耗时：" + maxRunTime);
-		System.out.println("运行计数：" + runner.getNumber());
+		System.out.println("Max spent time: " + maxRunTime);
+		System.out.println("Runner Identifier: " + runner.getIdentifier());
 	}
 
 }

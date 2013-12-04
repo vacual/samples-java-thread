@@ -1,7 +1,7 @@
 package info.halo9pan.samples.java.thread.sync.demo;
 
+import info.halo9pan.samples.java.thread.Runner;
 import info.halo9pan.samples.java.thread.sync.Demo;
-import info.halo9pan.samples.java.thread.sync.Runner;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -36,6 +36,6 @@ class AtomFieldRunner extends Runner {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		this.number = this.atom.get();
+		this.identifier = this.atom.get();
 	}
 }

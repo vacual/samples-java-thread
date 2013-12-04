@@ -1,8 +1,8 @@
 package info.halo9pan.samples.java.thread.sync.demo;
 
+import info.halo9pan.samples.java.thread.Invoker;
+import info.halo9pan.samples.java.thread.Runner;
 import info.halo9pan.samples.java.thread.sync.Demo;
-import info.halo9pan.samples.java.thread.sync.Invoker;
-import info.halo9pan.samples.java.thread.sync.Runner;
 
 public class DoubleStaticLock extends Demo {
 
@@ -30,8 +30,8 @@ public class DoubleStaticLock extends Demo {
 					DoubleStaticRunner.doAnotherStatic();
 				}
 				long end = System.currentTimeMillis();
-				this.runTime = (end - start);
-				System.out.println("[" + this.id + "]" + "结束运行，耗时" + this.runTime);
+				this.spentTime = (end - start);
+				System.out.println("[" + this.id + "]" + "结束运行，耗时" + this.spentTime);
 			}
 			
 		};

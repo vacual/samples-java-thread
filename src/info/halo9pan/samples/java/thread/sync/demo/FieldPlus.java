@@ -1,12 +1,12 @@
 package info.halo9pan.samples.java.thread.sync.demo;
 
+import info.halo9pan.samples.java.thread.Runner;
 import info.halo9pan.samples.java.thread.sync.Demo;
-import info.halo9pan.samples.java.thread.sync.Runner;
 
 public class FieldPlus extends Demo {
 
 	public static void main(String[] args) {
-		System.out.println("没有synchronized关键字，number++");
+		System.out.println("没有synchronized关键字，identifier++");
 		FieldPlus demo = new FieldPlus();
 		demo.THREAD_NUMBER = 1000;
 		demo.show();
@@ -27,7 +27,7 @@ class FieldPlusRunner extends Runner {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.5));
-			this.number++;
+			this.identifier++;
 			Thread.sleep((long) (time * 0.5));
 		} catch (InterruptedException e) {
 			e.printStackTrace();

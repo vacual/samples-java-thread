@@ -1,8 +1,8 @@
 package info.halo9pan.samples.java.thread.sync.demo;
 
+import info.halo9pan.samples.java.thread.Invoker;
+import info.halo9pan.samples.java.thread.Runner;
 import info.halo9pan.samples.java.thread.sync.Demo;
-import info.halo9pan.samples.java.thread.sync.Invoker;
-import info.halo9pan.samples.java.thread.sync.Runner;
 
 public class VolatileField extends Demo {
 
@@ -51,7 +51,7 @@ class VolatileFieldRunner extends Runner {
 	}
 
 	@Override
-	public int getNumber() {
+	public int getIdentifier() {
 		return this.number;
 	}
 }
