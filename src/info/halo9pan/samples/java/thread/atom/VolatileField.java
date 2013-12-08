@@ -1,13 +1,12 @@
-package info.halo9pan.samples.java.thread.sync.demo;
+package info.halo9pan.samples.java.thread.atom;
 
 import info.halo9pan.samples.java.thread.Invoker;
 import info.halo9pan.samples.java.thread.Runner;
-import info.halo9pan.samples.java.thread.sync.Demo;
 
-public class VolatileField extends Demo {
+public class VolatileField extends AbstractDemo {
 
 	public static void main(String[] args) {
-		System.out.println("没有synchronized，成员变量添加volatile修饰");
+		System.out.println("No synchronized key work，one field add volatile key work.");
 		VolatileField demo = new VolatileField();
 		demo.THREAD_NUMBER = 1000;
 		demo.show();
@@ -38,7 +37,7 @@ class VolatileFieldRunner extends Runner {
 	volatile private int number;
 
 	@Override
-	public void doSomething() {
+	public void doSomething(int invoker) {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.5));
@@ -51,7 +50,7 @@ class VolatileFieldRunner extends Runner {
 	}
 
 	@Override
-	public int getIdentifier() {
+	public Object getIdentifier() {
 		return this.number;
 	}
 }

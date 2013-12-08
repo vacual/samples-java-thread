@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import info.halo9pan.samples.java.thread.Invoker;
 import info.halo9pan.samples.java.thread.Runner;
 
-public abstract class Demo {
+public abstract class AbstractDemo {
 
 	protected int THREAD_NUMBER = 4;
 
@@ -29,7 +29,7 @@ public abstract class Demo {
 			this.threadPool.execute(invoker);
 		}
 		this.threadPool.shutdown();
-		this.printNumber();
+		this.printIdentifier();
 	}
 
 	protected Invoker createInvoker(int i) {
@@ -37,7 +37,7 @@ public abstract class Demo {
 		return invoker;
 	}
 
-	protected void printNumber() {
+	protected void printIdentifier() {
 		long waitingTime = (long) (this.runner.getRunTime() * THREAD_NUMBER);
 		try {
 			this.threadPool.awaitTermination(waitingTime * 2, TimeUnit.MILLISECONDS);

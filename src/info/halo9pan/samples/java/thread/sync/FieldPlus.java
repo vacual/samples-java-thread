@@ -1,9 +1,8 @@
-package info.halo9pan.samples.java.thread.sync.demo;
+package info.halo9pan.samples.java.thread.sync;
 
 import info.halo9pan.samples.java.thread.Runner;
-import info.halo9pan.samples.java.thread.sync.Demo;
 
-public class FieldPlus extends Demo {
+public class FieldPlus extends AbstractDemo {
 
 	public static void main(String[] args) {
 		System.out.println("没有synchronized关键字，identifier++");
@@ -23,7 +22,7 @@ public class FieldPlus extends Demo {
 class FieldPlusRunner extends Runner {
 
 	@Override
-	public void doSomething() {
+	public void doSomething(int invoker) {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.5));

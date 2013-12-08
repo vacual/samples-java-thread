@@ -1,20 +1,19 @@
-package info.halo9pan.samples.java.thread.sync.demo;
+package info.halo9pan.samples.java.thread.sync;
 
 import info.halo9pan.samples.java.thread.Invoker;
 import info.halo9pan.samples.java.thread.Runner;
-import info.halo9pan.samples.java.thread.sync.Demo;
 
-public class DoubleMethodLock extends Demo {
+public class DoubleStaticLock extends AbstractDemo {
 
 	public static void main(String[] args) {
-		System.out.println("synchronized关键字加在方法前，多个方法前添加synchronized关键字");
-		DoubleMethodLock demo = new DoubleMethodLock();
+		System.out.println("synchronized关键字加在静态方法前，多个静态方法前添加synchronized关键字");
+		DoubleStaticLock demo = new DoubleStaticLock();
 		demo.show();
 	}
 
 	@Override
 	protected Runner createRunner() {
-		Runner runner = new DoubleMethodRunner();
+		Runner runner = new DoubleStaticRunner();
 		return runner;
 	}
 
@@ -24,11 +23,10 @@ public class DoubleMethodLock extends Demo {
 			@Override
 			public void run() {
 				long start = System.currentTimeMillis();
-				DoubleMethodRunner dmr = (DoubleMethodRunner)this.runner;
 				if((this.id % 2) == 0){
-					dmr.doSomething();
+					DoubleStaticRunner.doSomethingStatic();
 				} else {
-					dmr.doAnother();
+					DoubleStaticRunner.doAnotherStatic();
 				}
 				long end = System.currentTimeMillis();
 				this.spentTime = (end - start);
@@ -39,35 +37,45 @@ public class DoubleMethodLock extends Demo {
 		return invoker;
 	}
 
+	protected void printIdentifier() {
+		super.printIdentifier();
+		System.out.println("运行计数：" + DoubleStaticRunner.number);
+	}
+
 }
 
-class DoubleMethodRunner extends Runner {
+class DoubleStaticRunner extends Runner {
+	
+	public static int number;
 
-	@Override
-	public synchronized void doSomething() {
-		long time = getRunTime();
+	public static synchronized void doSomethingStatic() {
+		long time = 1000L;
 		try {
 			Thread.sleep((long) (time * 0.4));
-			int number = this.identifier;
+			int n = number;
 			Thread.sleep((long) (time * 0.2));
-			this.identifier = number + 1;
+			number = n + 1;
 			Thread.sleep((long) (time * 0.4));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public synchronized void doAnother() {
-		long time = getRunTime() * 2;
+	public static synchronized void doAnotherStatic() {
+		long time = 2000L;
 		try {
 			Thread.sleep((long) (time * 0.8));
-			int number = this.identifier;
+			int n = number;
 			Thread.sleep((long) (time * 0.1));
-			this.identifier = number + 1;
+			number = n + 1;
 			Thread.sleep((long) (time * 0.1));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void doSomething(int invoker) {
 	}
 
 }

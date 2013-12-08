@@ -6,9 +6,9 @@ public abstract class Runner {
 	protected int identifier;
 	protected long runTime = DEFAULT_RUN_TIME;
 
-	public abstract void doSomething();
+	public abstract void doSomething(int invoker);
 
-	public int getIdentifier() {
+	public Object getIdentifier() {
 		return identifier;
 	}
 

@@ -1,9 +1,8 @@
-package info.halo9pan.samples.java.thread.sync.demo;
+package info.halo9pan.samples.java.thread.sync;
 
 import info.halo9pan.samples.java.thread.Runner;
-import info.halo9pan.samples.java.thread.sync.Demo;
 
-public class MethodLock extends Demo {
+public class MethodLock extends AbstractDemo {
 
 	public static void main(String[] args) {
 		System.out.println("synchronized关键字加在方法前");
@@ -22,7 +21,7 @@ public class MethodLock extends Demo {
 class MethodRunner extends Runner {
 
 	@Override
-	public synchronized void doSomething() {
+	public synchronized void doSomething(int invoker) {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.4));

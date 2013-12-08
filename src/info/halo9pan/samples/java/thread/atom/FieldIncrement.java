@@ -1,33 +1,32 @@
-package info.halo9pan.samples.java.thread.sync.demo;
+package info.halo9pan.samples.java.thread.atom;
 
 import info.halo9pan.samples.java.thread.Runner;
-import info.halo9pan.samples.java.thread.sync.Demo;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class AtomField extends Demo {
+public class FieldIncrement extends AbstractDemo {
 
 	public static void main(String[] args) {
-		System.out.println("没有synchronized关键字，AtomicInteger++");
-		AtomField demo = new AtomField();
+		System.out.println("AtomicInteger++");
+		FieldIncrement demo = new FieldIncrement();
 		demo.THREAD_NUMBER = 1000;
 		demo.show();
 	}
 
 	@Override
 	protected Runner createRunner() {
-		Runner runner = new AtomFieldRunner();
+		Runner runner = new FieldIncrementRunner();
 		return runner;
 	}
 
 }
 
-class AtomFieldRunner extends Runner {
+class FieldIncrementRunner extends Runner {
 
 	private AtomicInteger atom = new AtomicInteger();
 
 	@Override
-	public void doSomething() {
+	public void doSomething(int invoker) {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.5));

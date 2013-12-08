@@ -15,7 +15,7 @@ public class Invoker implements Runnable {
 	@Override
 	public void run() {
 		long start = System.currentTimeMillis();
-		this.runner.doSomething();
+		this.runner.doSomething(this.id);
 		long end = System.currentTimeMillis();
 		this.spentTime = (end - start);
 		System.out.println("[" + this.id + "]" + " finished, spent time: " + this.spentTime);

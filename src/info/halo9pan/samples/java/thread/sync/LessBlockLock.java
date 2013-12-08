@@ -1,9 +1,8 @@
-package info.halo9pan.samples.java.thread.sync.demo;
+package info.halo9pan.samples.java.thread.sync;
 
 import info.halo9pan.samples.java.thread.Runner;
-import info.halo9pan.samples.java.thread.sync.Demo;
 
-public class LessBlockLock extends Demo {
+public class LessBlockLock extends AbstractDemo {
 
 	public static void main(String[] args) {
 		System.out.println("synchronized语句块，this作为锁，局部加锁");
@@ -22,7 +21,7 @@ public class LessBlockLock extends Demo {
 class LessBlockLockRunner extends Runner {
 
 	@Override
-	public void doSomething() {
+	public void doSomething(int invoker) {
 		long time = getRunTime();
 		try {
 			Thread.sleep((long) (time * 0.4));
