@@ -29,7 +29,7 @@ public abstract class AbstractDemo {
 			this.threadPool.execute(invoker);
 		}
 		this.threadPool.shutdown();
-		this.printNumber();
+		this.close();
 	}
 
 	protected Invoker createInvoker(int i) {
@@ -37,20 +37,26 @@ public abstract class AbstractDemo {
 		return invoker;
 	}
 
-	protected void printNumber() {
-		long waitingTime = (long) (this.runner.getRunTime() * THREAD_NUMBER);
+	protected void close() {
+		long waitingTime = getWaitingTime();
 		try {
-			this.threadPool.awaitTermination(waitingTime * 2, TimeUnit.MILLISECONDS);
+			this.threadPool.awaitTermination(waitingTime, TimeUnit.MILLISECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		this.runner.close();
 		long maxRunTime = 0;
 		for (Invoker i : this.list) {
 			long runTime = i.getSpentTime();
 			maxRunTime = (maxRunTime < runTime) ? runTime : maxRunTime;
 		}
 		System.out.println("Max spent time: " + maxRunTime);
-		System.out.println("Runner Identifier: " + runner.getIdentifier());
+		System.out.println("Runner Identifier: " + this.runner.getIdentifier());
+	}
+	
+	protected long getWaitingTime(){
+		long waitingTime = this.runner.getRunTime();
+		return waitingTime * 2;
 	}
 
 }

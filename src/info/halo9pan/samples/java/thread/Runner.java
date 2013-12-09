@@ -8,6 +8,10 @@ public abstract class Runner {
 
 	public abstract void doSomething(int invoker);
 
+	protected void setRunTime(long runTime) {
+		this.runTime = runTime;
+	}
+
 	public Object getIdentifier() {
 		return identifier;
 	}
@@ -16,8 +20,7 @@ public abstract class Runner {
 		return this.runTime;
 	}
 
-	protected void setRunTime(long runTime) {
-		this.runTime = runTime;
+	public void close() {
 	}
 
 }

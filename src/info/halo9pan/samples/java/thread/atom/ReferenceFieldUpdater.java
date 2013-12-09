@@ -23,17 +23,17 @@ public class ReferenceFieldUpdater extends AbstractDemo {
 }
 
 class ReferenceTarget {
-	volatile String updatee;
+	volatile String updateTime;
 
-	protected String getUpdatee() {
-		return updatee;
+	protected String getUpdateTime() {
+		return updateTime;
 	}
 }
 
 class ReferenceFieldUpdaterRunner extends Runner {
 
 	private AtomicReferenceFieldUpdater<ReferenceTarget, String> updater = AtomicReferenceFieldUpdater
-			.newUpdater(ReferenceTarget.class, String.class, "updatee");
+			.newUpdater(ReferenceTarget.class, String.class, "updateTime");
 	private ReferenceTarget referenceTarget = new ReferenceTarget();
 
 	@Override
@@ -44,6 +44,6 @@ class ReferenceFieldUpdaterRunner extends Runner {
 
 	@Override
 	public Object getIdentifier() {
-		return this.referenceTarget.getUpdatee();
+		return this.referenceTarget.getUpdateTime();
 	}
 }

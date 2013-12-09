@@ -1,6 +1,6 @@
 package info.halo9pan.samples.java.thread.atom;
 
-import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 
 import info.halo9pan.samples.java.thread.Runner;
@@ -25,26 +25,56 @@ public class MarkableReference extends AbstractDemo {
 class MarkableReferenceKey {
 	volatile String key;
 
-	protected String getKey() {
-		return key;
+	public MarkableReferenceKey(String key) {
+		this.key = key;
 	}
+
+	@Override
+	public String toString() {
+		return "[" + key + "]";
+	}
+
 }
 
 class MarkableReferenceRunner extends Runner {
 
-	private MarkableReferenceKey key = new MarkableReferenceKey();
-	private AtomicMarkableReference<MarkableReferenceKey> reference = new AtomicMarkableReference<MarkableReferenceKey>(key, false);
+	private MarkableReferenceKey odd = new MarkableReferenceKey("odd");
+	private MarkableReferenceKey even = new MarkableReferenceKey("even");
+	private AtomicMarkableReference<MarkableReferenceKey> reference = new AtomicMarkableReference<MarkableReferenceKey>(even, false);
 
 	@Override
 	public void doSomething(int invoker) {
-			Calendar now = Calendar.getInstance();
-			long millis = now.get(Calendar.SECOND);
-			boolean mark = (millis % 2 == 0) ? true : false;
-			this.reference.attemptMark(this.key, mark);
+		boolean mark = (invoker % 2 == 0) ? true : false;
+		MarkableReferenceKey key = mark ? this.even : this.odd;
+		this.reference.set(key, true);
+		int tryTime = invoker;
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(invoker).append(":");
+		int i = 0;
+		for (; (i < tryTime); i++) {
+			boolean success = this.reference.attemptMark(this.even, true);
+			if (success) {
+				break;
+			} else {
+				try {
+					TimeUnit.NANOSECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				buffer.append('.');
+			}
+		}
+		System.out.println(buffer);
 	}
-	
+
 	@Override
 	public Object getIdentifier() {
-		return this.reference.isMarked();
+		return this.reference.getReference().toString() + ":" + this.reference.isMarked();
 	}
+
+	@Override
+	public void close() {
+		this.reference.compareAndSet(this.odd, this.even, true, false);
+	}
+
 }
