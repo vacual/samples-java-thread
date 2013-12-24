@@ -1,4 +1,4 @@
 samples-java-thread
 ===================
 
-Java multithread samples, simple to complex
+Java multi-thread samples, simple to complex!
