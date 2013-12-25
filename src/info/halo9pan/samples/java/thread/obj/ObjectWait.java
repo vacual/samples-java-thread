@@ -28,9 +28,7 @@ public class ObjectWait {
 			public void run() {
 				try {
 					System.out.println("Condition Thread was started.");
-					System.out.println("Condition Thread sleep 1s.");
 					Thread.sleep(1000L);
-					System.out.println("Condition Thread change condition.");
 					waitThread.condition = false;
 					System.out.println("Condition Thread was finished.");
 				} catch (InterruptedException e) {
@@ -41,6 +39,4 @@ public class ObjectWait {
 		waitThread.start();
 		conditionThread.start();
 	}
-
 }
-
