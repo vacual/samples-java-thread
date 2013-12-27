@@ -1,4 +1,4 @@
-package info.halo9pan.samples.java.thread.lock;
+package info.halo9pan.samples.java.thread.lock.perf;
 
 import java.util.ArrayList;
 import java.util.List;
