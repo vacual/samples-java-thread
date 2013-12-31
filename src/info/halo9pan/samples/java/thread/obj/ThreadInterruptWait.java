@@ -2,27 +2,32 @@ package info.halo9pan.samples.java.thread.obj;
 
 import java.util.concurrent.TimeUnit;
 
-public class ThreadInterrupt {
+public class ThreadInterruptWait {
 
     public static void main(String[] args) {
-		class WaitThread extends Thread {
+        final Object lock = new Object();
+        class WaitThread extends Thread {
 
-			@Override
-			public void run() {
-				System.out.println("Wait Thread was started.");
-				int times = Integer.MIN_VALUE;
-				while (times++ < Integer.MAX_VALUE) {
-				}
-				System.out.println("Wait Thread was finished.");
-			}
-		}
+            @Override
+            public void run() {
+                try {
+                    System.out.println("Wait Thread was started.");
+                    synchronized (lock) {
+                        lock.wait();
+                    }
+                    System.out.println("Wait Thread was finished.");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         final WaitThread waitThread = new WaitThread();
         Thread interruptThread = new Thread() {
             @Override
             public void run() {
                 try {
                     System.out.println("Interrupt Thread was started.");
-                    TimeUnit.MILLISECONDS.sleep(10L);
+                    TimeUnit.SECONDS.sleep(1L);
                     System.out.println("Wait Thread state." + waitThread.getState());
                     waitThread.interrupt();
                     System.out.println("Interrupt Thread was finished.");
@@ -36,4 +41,3 @@ public class ThreadInterrupt {
     }
 
 }
-

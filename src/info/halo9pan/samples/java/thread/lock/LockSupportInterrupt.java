@@ -1,8 +1,9 @@
-package info.halo9pan.samples.java.thread.obj;
+package info.halo9pan.samples.java.thread.lock;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
 
-public class ThreadInterrupt {
+public class LockSupportInterrupt {
 
     public static void main(String[] args) {
 		class WaitThread extends Thread {
@@ -10,9 +11,7 @@ public class ThreadInterrupt {
 			@Override
 			public void run() {
 				System.out.println("Wait Thread was started.");
-				int times = Integer.MIN_VALUE;
-				while (times++ < Integer.MAX_VALUE) {
-				}
+				LockSupport.park();
 				System.out.println("Wait Thread was finished.");
 			}
 		}
@@ -22,7 +21,7 @@ public class ThreadInterrupt {
             public void run() {
                 try {
                     System.out.println("Interrupt Thread was started.");
-                    TimeUnit.MILLISECONDS.sleep(10L);
+                    TimeUnit.SECONDS.sleep(1L);
                     System.out.println("Wait Thread state." + waitThread.getState());
                     waitThread.interrupt();
                     System.out.println("Interrupt Thread was finished.");
