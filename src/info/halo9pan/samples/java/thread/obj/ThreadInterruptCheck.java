@@ -18,6 +18,7 @@ public class ThreadInterruptCheck {
 				try {
 					while (times++ < Integer.MAX_VALUE) {
 						if (Thread.interrupted()) {
+							System.out.println("Wait Thread was interrupted.");
 							throw new InterruptedException(Thread.currentThread().getName());
 						}
 					}

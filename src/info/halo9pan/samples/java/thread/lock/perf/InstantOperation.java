@@ -8,8 +8,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class InstantOperation extends SimpleDemo {
 
     public static void main(String[] args) {
-        int[] numbers = {1, 2, 4, 8, 16, 32};
-        int times = 100;
+        int[] numbers = {1, 2, 4, 8, 16, 2000};
+        int times = 1;
         for (int i : numbers) {
             System.out.println("================================================================================");
             SimpleDemo sync = new InstantOperation(i, new SyncRunner());

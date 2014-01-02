@@ -170,7 +170,7 @@ abstract class ProcessRunner extends Runner{
     @Override
     protected String read(String key) {
         try {
-            TimeUnit.MILLISECONDS.sleep(2L);
+            TimeUnit.MICROSECONDS.sleep(2L);
         } catch (InterruptedException e) {
         }
         return super.read(key);
@@ -179,7 +179,7 @@ abstract class ProcessRunner extends Runner{
     @Override
     protected String write(String key, String value) {
         try {
-            TimeUnit.MILLISECONDS.sleep(2L);
+            TimeUnit.MICROSECONDS.sleep(2L);
         } catch (InterruptedException e) {
         }
         return super.write(key, value);

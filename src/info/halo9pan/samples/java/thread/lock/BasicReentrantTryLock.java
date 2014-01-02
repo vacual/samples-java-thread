@@ -8,46 +8,46 @@ public class BasicReentrantTryLock {
 
 	public static void main(String[] args) {
 		final Lock lock = new ReentrantLock();
-        class WaitThread extends Thread{
-            String token;
+		class WaitThread extends Thread {
+			String token;
 
-            public WaitThread(String token) {
-                super();
-                this.token = token;
-            }
+			public WaitThread(String token) {
+				super();
+				this.token = token;
+			}
 
-            @Override
+			@Override
 			public void run() {
 				try {
-                    System.out.println("Wait Thread " + token + " was started.");
-					lock.tryLock();
-                    System.out.println("Wait Thread " + token + " got the lock.");
-                    TimeUnit.SECONDS.sleep(4L);
-                    System.out.println("Wait Thread " + token + " was finished.");
-                    lock.unlock();
-                } catch (InterruptedException e) {
-                    System.out.println("Wait Thread " + token + " was interrupted.");
+					System.out.println("Wait Thread " + token + " was started.");
+					boolean success = lock.tryLock();
+					System.out.println("Wait Thread " + token + " got the lock: " + success);
+					TimeUnit.SECONDS.sleep(4L);
+					System.out.println("Wait Thread " + token + " was finished.");
+					lock.unlock();
+				} catch (InterruptedException e) {
+					System.out.println("Wait Thread " + token + " was interrupted.");
 				}
 			}
 		}
-        final WaitThread oneThread = new WaitThread("one");
-        final WaitThread twoThread = new WaitThread("two");
-        Thread modifyThread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    System.out.println("Interrupt Thread was started.");
-                    TimeUnit.SECONDS.sleep(1L);
-                    twoThread.interrupt();
-                    System.out.println("Interrupt Thread was finished.");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        oneThread.start();
-        twoThread.start();
-        modifyThread.start();
+		final WaitThread oneThread = new WaitThread("one");
+		final WaitThread twoThread = new WaitThread("two");
+		Thread modifyThread = new Thread() {
+			@Override
+			public void run() {
+				try {
+					System.out.println("Interrupt Thread was started.");
+					TimeUnit.SECONDS.sleep(1L);
+					twoThread.interrupt();
+					System.out.println("Interrupt Thread was finished.");
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		oneThread.start();
+		twoThread.start();
+		modifyThread.start();
 	}
 
 }
