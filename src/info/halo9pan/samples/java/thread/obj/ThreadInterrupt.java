@@ -2,6 +2,10 @@ package info.halo9pan.samples.java.thread.obj;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Created: 2014-01-02
+ * @author <a href="https://github.com/Halo9Pan">Halo9Pan</a>
+ */
 public class ThreadInterrupt {
 
     public static void main(String[] args) {
