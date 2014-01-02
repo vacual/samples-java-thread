@@ -2,6 +2,10 @@ package info.halo9pan.samples.java.thread.obj;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Created: 2014-01-02
+ * @author Halo9Pan
+ */
 public class ThreadInterruptCheck {
 
 	public static void main(String[] args) {
