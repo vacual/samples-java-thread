@@ -3,6 +3,10 @@ package info.halo9pan.samples.java.thread.lock;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
+/**
+ * Created: 2014-01-02
+ * @author Halo9Pan
+ */
 public class LockSupportInterrupt {
 
     public static void main(String[] args) {
