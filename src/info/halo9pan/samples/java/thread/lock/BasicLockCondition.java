@@ -27,7 +27,6 @@ public class BasicLockCondition {
                     System.out.println("Wait Thread " + token + " start to wait.");
                     condition.await();
                     System.out.println("Wait Thread " + token + " finish waiting.");
-                    lock.unlock();
                     System.out.println("Wait Thread " + token + " was finished.");
                 } catch (InterruptedException e) {
                     System.out.println("Wait Thread " + token + " was interrupted.");
@@ -41,9 +40,9 @@ public class BasicLockCondition {
                 try {
                     System.out.println("Signal Thread was started.");
                     TimeUnit.SECONDS.sleep(1L);
-                    lock.lock();
-                    System.out.println("Signal Thread got the lock.");
-                    condition.signal();
+                    boolean acquire = lock.tryLock();
+                    System.out.println("Signal Thread got the lock: " + acquire);
+                    condition.signalAll();
                     lock.unlock();
                     System.out.println("Signal Thread was finished.");
                 } catch (InterruptedException e) {
